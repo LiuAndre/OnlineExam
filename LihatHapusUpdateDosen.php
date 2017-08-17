@@ -22,8 +22,6 @@
         $db->executeNonQuery($query);
         $pesan = "Data Telah Terupdate!";
         }
-        
-        
     }
 
     if(isset($_POST['HapusDosen'])){
@@ -38,56 +36,56 @@
         $data = $db->executeGetArray("SELECT * FROM `dosen` WHERE status =  true");
 ?>
         <div class="col-xs-12">
-          <div class="box box-primary">
-            <div class="box-header">
-              <h3 class="box-title">List Dosen</h3>
-                <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 100px;">
-                    <a href='masterDosen.php'><button id="btnTambahDosen" class="btn btn-success" style="position:absolute;margin-left: -34px;height: 30px;padding: 5px 10px;"><span class="glyphicon glyphicon-plus"></span> Tambah Dosen</button></a>
+            <div class="box box-primary">
+                <div class="box-header">
+                <h3 class="box-title">List Dosen</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 100px;">
+                            <a href='masterDosen.php'><button id="btnTambahDosen" class="btn btn-success" style="position:absolute;margin-left: -34px;height: 30px;padding: 5px 10px;"><span class="glyphicon glyphicon-plus"></span> Tambah Dosen</button></a>
+                        </div>
+                    </div>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 100px;"></div>
+                    </div>
                 </div>
-              </div>
-              <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 100px;">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="tabelMataKuliah" class="table table-bordered table-striped datatable">
+                        <thead>
+                            <tr>
+                            <th>NID</th>
+                            <th>Nama Dosenr</th>
+                            <th>Alamat </th>
+                            <th>Telpon </th>
+                            <th>Email</th>
+                            <th>Update </th>
+                            <th>Delete </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                            if($data != null){
+                                foreach($data as $value){
+                                    echo "
+                                        <tr>
+                                        <td>{$value[0]}</td>
+                                        <td>{$value[2]}</td>
+                                        <td>{$value[3]}</td>
+                                        <td>{$value[4]}</td>
+                                        <td>{$value[5]}</td>
+                                        <td><button id='updateDosen' name-'updateDosen' class='btn btn-success btn-block btn-sm' data-target='#updateDosen'><span class='glyphicon glyphicon-plus'></span> Update</button></td>
+                                        <td><button id='dialogDeleteDosen' name='dialogDeleteDosen' class='btn btn-danger btn-block btn-sm' style='height: 30px' data-toggle='modal' data-target='#dialogDeleteDosen'><span class='glyphicon glyphicon-remove'></span> Delete</button></td>
+                                        </tr>
+                                    ";
+                                }
+                            }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
-              </div>
+                <!-- /.box-body -->
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="tabelMataKuliah" class="table table-bordered table-striped datatable">
-                <thead>
-                    <tr>
-                    <th>NID</th>
-                    <th>Nama Dosenr</th>
-                    <th>Alamat </th>
-                    <th>Telpon </th>
-                    <th>Email</th>
-                    <th>Update </th>
-                    <th>Delete </th>
-                    </tr>
-                </thead>
-                <tbody>
-            <?php 
-                if($data != null){
-                    foreach($data as $value){
-                        echo "
-                        <tr>
-                        <td>{$value[0]}</td>
-                        <td>{$value[2]}</td>
-                        <td>{$value[3]}</td>
-                        <td>{$value[4]}</td>
-                        <td>{$value[5]}</td>
-                        <td><button id='updateDosen' name-'updateDosen' class='btn btn-success btn-block btn-sm' data-target='#updateDosen'><span class='glyphicon glyphicon-plus'></span> Update</button></td>
-                        <td><button id='dialogDeleteDosen' name='dialogDeleteDosen' class='btn btn-danger btn-block btn-sm' style='height: 30px' data-toggle='modal' data-target='#dialogDeleteDosen'><span class='glyphicon glyphicon-remove'></span> Delete</button></td>
-                        </tr>";
-                    }
-                }
-            ?>
-              </tbody>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+            <!-- /.box -->
         </div>
 <?php
     }
@@ -101,9 +99,8 @@
                     <div class="box box-success box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">Sukses</h3>
-
                             <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
                             <!-- /.box-tools -->
                         </div>
@@ -151,21 +148,18 @@
                                 <tbody>
                             <?php 
                                 $data = $db->executeGetArray("SELECT d.NID,d.Nama, am.jumlah
-                                    FROM
-                                    (SELECT `Kode Matkul`,NID,COUNT(*) as jumlah FROM  onlineexam.mengambil GROUP BY `Kode Matkul`, NID) am,
-                                    onlineexam.dosen d
-                                    where d.NID = am.NID AND `kode matkul` = '{$_GET['btnLihatPengajar']}'
-                                    UNION DISTINCT
-                                    SELECT d.NID, d.Nama, 0 from onlineexam.mengajar me, onlineexam.dosen d WHERE `Kode Matkul`='{$_GET['btnLihatPengajar']}' AND D.NID = me.NID
-                                    AND d.nid not in (select NID FROM onlineexam.mengambil am where am.`Kode Matkul` = '{$_GET['btnLihatPengajar']}')");
+                                                                FROM (SELECT `Kode Matkul`,NID,COUNT(*) as jumlah FROM  onlineexam.mengambil GROUP BY `Kode Matkul`, NID) am, onlineexam.dosen d WHERE d.NID = am.NID AND `kode matkul` = '{$_GET['btnLihatPengajar']}'
+                                                                UNION DISTINCT
+                                                                SELECT d.NID, d.Nama, 0 from onlineexam.mengajar me, onlineexam.dosen d WHERE `Kode Matkul`='{$_GET['btnLihatPengajar']}' AND D.NID = me.NID AND d.nid not in (select NID FROM onlineexam.mengambil am WHERE am.`Kode Matkul` = '{$_GET['btnLihatPengajar']}')");
                                 if($data != null){
                                     foreach($data as $value){
                                         echo "
-                                        <tr>
-                                        <td>{$value[0]}</td>
-                                        <td>{$value[1]}</td>
-                                        <td>{$db->executeGetScalar("SELECT COUNT(*) FROM MENGAJAR WHERE `Kode Matkul` = '{$value[0]}'")} <button class='btn btn-danger' style='height:30px;padding: 5px; 10px;' value='{$value[0]},{$_GET['btnLihatPengajar']}' name='btnLihatPengajar'>Hapus</button></td>
-                                        </tr>";
+                                            <tr>
+                                            <td>{$value[0]}</td>
+                                            <td>{$value[1]}</td>
+                                            <td>{$db->executeGetScalar("SELECT COUNT(*) FROM MENGAJAR WHERE `Kode Matkul` = '{$value[0]}'")} <button class='btn btn-danger' style='height:30px;padding: 5px; 10px;' value='{$value[0]},{$_GET['btnLihatPengajar']}' name='btnLihatPengajar'>Hapus</button></td>
+                                            </tr>
+                                        ";
                                     }
                                 }
                                 else{
@@ -175,14 +169,14 @@
                                     https://stackoverflow.com/a/34012324 -> Ngakali
                                 }
                             ?>
-                            </tbody>
-                            <tfooter>
-                                <tr>
-                                <th>Kode Dosen</th>
-                                <th>Nama Dosen</th>
-                                <th>Jumlah Mahasiswa</th>
-                                </tr>
-                            </tfooter>
+                                </tbody>
+                                <tfooter>
+                                    <tr>
+                                    <th>Kode Dosen</th>
+                                    <th>Nama Dosen</th>
+                                    <th>Jumlah Mahasiswa</th>
+                                    </tr>
+                                </tfooter>
                             </table>
                         </div>
                         <!-- /.box-body -->
@@ -199,50 +193,52 @@
         $db->executeNonQuery("INSERT INTO `Mengajar` VALUES('{$_POST['kodeMatKul']}','{$_POST['txtIdDosen']}')");
         $pesan = "Berhasil menambah '{$db->executeGetScalar("SELECT `Nama` FROM DOSEN WHERE NID='{$_POST['txtIdDosen']}'")}' sebagai pengajar {$db->executeGetScalar("SELECT `Nama Matkul` FROM `mata kuliah` WHERE `Kode Matkul` = '{$_POST['kodeMatKul']}'")}";
     }
-        function formUpdateDosen(){
 
-        }
+    function formUpdateDosen(){
+
+    }
+    
     function formTambahPengajar(){
         global $db;
         $data = $db->executeGetArray("SELECT * FROM DOSEN");
         ?>
         <div class="row" id="dialogTambahPengajar">
             <div class="col-xs-12">
-            <div class="box box-success">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Tambah Pengajar</h3>
-                    <!-- /.box-tools -->
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Tambah Pengajar</h3>
+                        <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <form id="formTambahMatKul" class="form-horizontal" role="form" data-toggle="validator" method="post">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="txtNamaMatkul" class="col-sm-2 control-label">Mata Kuliah</label>
+
+                                <div class="col-sm-10" style="display: table;    vertical-align: middle;height: 30px;">
+                                    <span style="display: table-cell;vertical-align: middle;" ><?php echo $db->executeGetScalar("SELECT `Nama Matkul` FROM `mata kuliah` WHERE `Kode Matkul` = '{$_GET['btnLihatPengajar']}'"); ?></span>
+                                    <input type="hidden" name="kodeMatKul" value="<?php echo $_GET['btnLihatPengajar']; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtIdDosen" class="col-sm-2 control-label">Dosen</label>
+                                <div class="col-sm-10">
+                                    <select name="txtIdDosen" id="txtIdDosen" class="form-control" required data-error="Dosen yang mengajar harus dipilih!">
+                                    <?php
+                                        foreach($data as $dosen){
+                                            echo "<option value='{$dosen['NID']}'>{$dosen['Nama']}</option>";
+                                        }
+                                    ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" name="btnTambahPengajar" value="1" class="btn btn-success pull-right">Update</button>
+                            <button type="button" class="btn btn-default" id="btnCancelTambahPengajar">Cancel</button>
+                        </div><!-- /.box-footer -->
+                    </form>
                 </div>
-                <!-- /.box-header -->
-                <form id="formTambahMatKul" class="form-horizontal" role="form" data-toggle="validator" method="post">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="txtNamaMatkul" class="col-sm-2 control-label">Mata Kuliah</label>
-
-                            <div class="col-sm-10" style="display: table;    vertical-align: middle;height: 30px;">
-                                <span style="display: table-cell;vertical-align: middle;" ><?php echo $db->executeGetScalar("SELECT `Nama Matkul` FROM `mata kuliah` WHERE `Kode Matkul` = '{$_GET['btnLihatPengajar']}'"); ?></span>
-                                <input type="hidden" name="kodeMatKul" value="<?php echo $_GET['btnLihatPengajar']; ?>">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtIdDosen" class="col-sm-2 control-label">Dosen</label>
-
-                            <div class="col-sm-10">
-                                <select name="txtIdDosen" id="txtIdDosen" class="form-control" required data-error="Dosen yang mengajar harus dipilih!">
-                                <?php
-                                    foreach($data as $dosen){
-                                        echo "<option value='{$dosen['NID']}'>{$dosen['Nama']}</option>";
-                                    }
-                                 ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div><!-- /.box-body -->
-                    <div class="box-footer">
-                        <button type="submit" name="btnTambahPengajar" value="1" class="btn btn-success pull-right">Update</button>
-                        <button type="button" class="btn btn-default" id="btnCancelTambahPengajar">Cancel</button>
-                    </div><!-- /.box-footer -->
-                </form>
             </div>
         </div>
 <?php
@@ -265,26 +261,6 @@
     <![endif]-->
     <script src="asset/js/jsnya-felix.js"></script>
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <header class="main-header">
@@ -295,7 +271,6 @@ desired effect
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>iSTTS</b> Online Exam</span>
         </a>
-
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
             <!-- Sidebar toggle button-->
@@ -318,13 +293,10 @@ desired effect
                             <!-- The user image in the menu -->
                             <li class="user-header">
                                 <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
-                                <p>
-                                    Administrator - Avengers
-                                </p>
+                                <p>Administrator - Avengers</p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
-
                                 <div class="pull-right">
                                     <?php logout(); ?>
                                 </div>
@@ -349,13 +321,12 @@ desired effect
                     <p>Avengers - Admin</p>
                 </div>
             </div>
-
-        <!-- Sidebar Menu -->
+            <!-- Sidebar Menu -->
             <ul class="sidebar-menu">
                 <li class="header">MENU</li>
                 <?php menuAdmin(Array("Master Dosen","Lihat")); ?>
             </ul>
-        <!-- /.sidebar-menu -->
+            <!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
     </aside>
@@ -376,9 +347,7 @@ desired effect
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel">Anda yakin untuk menghapus?</h4>
                         </div>
-                        <div class="modal-body">
-
-                        </div>
+                        <div class="modal-body"></div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-danger" value='' name='HapusDosen'>Hapus</button>  
@@ -457,7 +426,7 @@ desired effect
                     </div><!-- /.box-footer -->
                 </div>
             </form>
-        <?php lihatPengajar();?>
+            <?php lihatPengajar();?>
         </section>
         <!-- /.content -->
     </div>
