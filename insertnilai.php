@@ -111,79 +111,78 @@
 </header>
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
-<!-- sidebar: style can be found in sidebar.less -->
-<section class="sidebar">
-    <!-- Sidebar user panel (optional) -->
-    <div class="user-panel">
-        <div class="pull-left image">
-            <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p><?php namaMahasiswa(); ?></p>
+                <p><?php echo $_SESSION['user']; ?></p>
+            </div>
         </div>
-        <div class="pull-left info">
-            <p><?php namaMahasiswa(); ?></p>
-            <p><?php echo $_SESSION['user']; ?></p>
-        </div>
-    </div>
 
-<!-- Sidebar Menu -->
-    <ul class="sidebar-menu">
-        <li class="header">MENU</li>
-        <?php menuMahasiswa("Awal");?>
-    </ul>
-<!-- /.sidebar-menu -->
-</section>
-<!-- /.sidebar -->
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+            <li class="header">MENU</li>
+            <?php menuMahasiswa("Awal");?>
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
 </aside>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-<!-- Content Header (Page header) -->
-<section class="content-header"><h1>Nilai anda</h1></section>
-
-<!-- Main content -->
-<section class="content">
-    <!-- TABLE: UJIAN -->
-    <div class="box box-info">
-        <form class="form-horizontal">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Hasil Ujian <?php echo $db->executeGetScalar("SELECT m.`Nama Matkul` FROM `Mata Kuliah` m, `Header_Ujian` h WHERE m.`Kode Matkul` = h.`Kode Matkul` AND h.`Kode` = $kode") ?></label>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                <div class="form-group">
-                    <label for="txtNRP" class="col-sm-2 control-label">NRP</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtNRP" value="<?php echo $nrp; ?>" disabled>
+    <!-- Content Header (Page header) -->
+    <section class="content-header"><h1>Nilai anda</h1></section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- TABLE: UJIAN -->
+        <div class="box box-info">
+            <form class="form-horizontal">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Hasil Ujian <?php echo $db->executeGetScalar("SELECT m.`Nama Matkul` FROM `Mata Kuliah` m, `Header_Ujian` h WHERE m.`Kode Matkul` = h.`Kode Matkul` AND h.`Kode` = $kode") ?></label>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtNama" class="col-sm-2 control-label">Nama</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtNama" value="<?php namaMahasiswa(); ?>" disabled>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                    <div class="form-group">
+                        <label for="txtNRP" class="col-sm-2 control-label">NRP</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtNRP" value="<?php echo $nrp; ?>" disabled>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtJumlahBenar" class="col-sm-2 control-label">Jumlah Benar</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtJumlahBenar" value="<?php echo $score; ?>" disabled>
+                    <div class="form-group">
+                        <label for="txtNama" class="col-sm-2 control-label">Nama</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtNama" value="<?php namaMahasiswa(); ?>" disabled>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtBanyakSoal" class="col-sm-2 control-label">Banyak Soal</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtBanyakSoal" value="<?php echo $banyaksoal; ?>" disabled>
+                    <div class="form-group">
+                        <label for="txtJumlahBenar" class="col-sm-2 control-label">Jumlah Benar</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtJumlahBenar" value="<?php echo $score; ?>" disabled>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="txtNilai" class="col-sm-2 control-label">Nilai</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="txtNilai" value="<?php echo $nilai; ?>" disabled>
+                    <div class="form-group">
+                        <label for="txtBanyakSoal" class="col-sm-2 control-label">Banyak Soal</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtBanyakSoal" value="<?php echo $banyaksoal; ?>" disabled>
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <label for="txtNilai" class="col-sm-2 control-label">Nilai</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtNilai" value="<?php echo $nilai; ?>" disabled>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.box-body -->
-            </div>
-        </form>
-</section>
-<!-- /.content -->
+            </form>
+    </section>
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 

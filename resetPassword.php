@@ -19,19 +19,19 @@
         include_once("module/mailer/PHPMailerAutoload.php");
         $mail = new PHPMailer;
 
-        //$mail->SMTPDebug = 3;                               // Enable verbose debug output
+        //$mail->SMTPDebug = 3;                                 // Enable verbose debug output
 
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.mail.com';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'online.exam@mail.com';                 // SMTP username
-        $mail->Password = '0nl1n33x4m@STTS';                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
+        $mail->isSMTP();                                        // Set mailer to use SMTP
+        $mail->Host = 'smtp.mail.com';                          // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                                 // Enable SMTP authentication
+        $mail->Username = 'online.exam@mail.com';               // SMTP username
+        $mail->Password = '0nl1n33x4m@STTS';                    // SMTP password
+        $mail->SMTPSecure = 'tls';                              // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                      // TCP port to connect to
 
         $mail->setFrom('online.exam@mail.com', 'Online Exam');
-        $mail->addAddress("$email", "$nama");     // Add a recipient
-        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->addAddress("$email", "$nama");                   // Add a recipient
+    $mail->isHTML(true);                                        // Set email format to HTML
 
         $mail->Subject = 'Online Exam Reset Password';
         $mail->Body    = "Halo, sepertinya anda telah meminta password baru. Silahkan kunjungi http://localhost/oe/resetPassword.php?reqPassCode=$code untuk mereset password anda. Terima kasih!";
@@ -94,8 +94,7 @@
                 $query = "INSERT INTO onlineexam.reset_password VALUES('".codeReset()."','{$_POST['userid']}',current_timestamp,DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 2 DAY),FALSE);";
                 $db->executeNonQuery($query);
                 mailSend($_POST['userid']);
-            }
-            else{
+            } else{
                 $pesanError = "Maaf User ID anda tidak terdaftar!";
             }
         }
@@ -111,7 +110,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Gagal</h3>
                             <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
                             <!-- /.box-tools -->
                         </div>
@@ -137,7 +136,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Berhasil</h3>
                             <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
                             <!-- /.box-tools -->
                         </div>
@@ -163,7 +162,7 @@
         $newPassword = password_hash($_POST['password'],PASSWORD_BCRYPT); 
         if(strpos($db->executeGetScalar("SELECT USERID From `reset_password` where kode = '{$_POST['reqKey']}'"),"D") !== FALSE){
             $Query = "UPDATE DOSEN SET PASSWORD = '$newPassword' WHERE NID = '".$db->executeGetScalar("SELECT USERID From `reset_password` where kode = '{$_POST['reqKey']}'")."'";
-        }else{
+        } else{
             $Query = "UPDATE MAHASISWA SET PASSWORD = '$newPassword' WHERE NRP = {$db->executeGetScalar("SELECT USERID From `reset_password` where kode = '{$_POST['reqKey']}'")}";
         }
         $db->executeNonQuery($Query);

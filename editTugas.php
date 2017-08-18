@@ -102,9 +102,7 @@
                             <!-- The user image in the menu -->
                             <li class="user-header">
                                 <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
-                                <p>
-                                    Administrator - Avengers
-                                </p>
+                                <p>Administrator - Avengers</p>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
@@ -120,26 +118,26 @@
     </header>
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p><?php namaDosen(); ?></p>
+                    <p>Avengers - Admin</p>
+                </div>
             </div>
-            <div class="pull-left info">
-                <p><?php namaDosen(); ?></p>
-                <p>Avengers - Admin</p>
-            </div>
-        </div>
-        <!-- Sidebar Menu -->
-        <ul class="sidebar-menu">
-            <li class="header">MENU</li>
-            <?php menuDosen("Master Tugas","Tambah"); ?>
-        </ul>
-        <!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li class="header">MENU</li>
+                <?php menuDosen("Master Tugas","Tambah"); ?>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
     </aside>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -153,14 +151,14 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="txtIdDosen" >Dosen</label>
-                                <select name="kodeMatkul" id="txtIdDosen" class="form-control" required data-error="Dosen yang mengajar harus dipilih!">
-                                <?php
-                                    $data = $db->executeGetArray("SELECT m.`Kode Matkul` AS Kode, ma.`Nama Matkul` as Nama FROM onlineexam.mengajar m, onlineexam.`mata kuliah` ma where m.`Kode Matkul` = ma.`Kode Matkul`");
-                                    foreach($data as $dosen){
-                                        echo "<option value='{$dosen['Kode']}'>{$dosen['Nama']}</option>";
-                                    }
-                                ?>
-                                </select>
+                            <select name="kodeMatkul" id="txtIdDosen" class="form-control" required data-error="Dosen yang mengajar harus dipilih!">
+                            <?php
+                                $data = $db->executeGetArray("SELECT m.`Kode Matkul` AS Kode, ma.`Nama Matkul` as Nama FROM onlineexam.mengajar m, onlineexam.`mata kuliah` ma where m.`Kode Matkul` = ma.`Kode Matkul`");
+                                foreach($data as $dosen){
+                                    echo "<option value='{$dosen['Kode']}'>{$dosen['Nama']}</option>";
+                                }
+                            ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Tugas</label>

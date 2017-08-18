@@ -75,26 +75,6 @@ function pesan(){
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <!-- Main Header -->
@@ -129,9 +109,7 @@ desired effect
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
                                     <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
-                                    <p>
-                                        Administrator - Avengers
-                                    </p>
+                                    <p>Administrator - Avengers</p>
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
@@ -148,36 +126,32 @@ desired effect
         </header>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Administrator</p>
+                        <p>Avengers - Admin</p>
+                    </div>
                 </div>
-                <div class="pull-left info">
-                    <p>Administrator</p>
-                    <p>Avengers - Admin</p>
-                </div>
-            </div>
-
-        <!-- Sidebar Menu -->
-            <ul class="sidebar-menu">
-                <li class="header">MENU</li>
-                <?php menuAdmin(Array("Master Dosen","Tambah")); ?>
-            </ul>
-        <!-- /.sidebar-menu -->
-        </section>
-        <!-- /.sidebar -->
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu">
+                    <li class="header">MENU</li>
+                    <?php menuAdmin(Array("Master Dosen","Tambah")); ?>
+                </ul>
+                <!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>Master Dosen</h1>
-            </section>
-
+            <section class="content-header"><h1>Master Dosen</h1></section>
             <section class="content">
                 <?php pesan(); ?>
                 <form role="form"  method="POST" action='masterdosen.php' data-toggle="validator">
@@ -211,11 +185,8 @@ desired effect
                             <div class="form-group">
                                 <label>Nomor Telepon:</label>
                                 <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-phone"></i>
-                                    </div>
+                                    <div class="input-group-addon"><i class="fa fa-phone"></i></div>
                                     <input type="text"  name='telpon'  class="form-control" data-inputmask="&quot;mask&quot;: &quot;9999-9999-999&quot;" data-mask="" placeholder="Masukkan Nomor Telpon" data-error="Data harus diisi!" required>
-                                 
                                 </div>
                                 <div class="help-block with-errors"></div>
                                 <!-- /.input group -->
@@ -241,9 +212,7 @@ desired effect
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 1.0 - Initial Release
-            </div>
+            <div class="pull-right hidden-xs"><b>Version</b> 1.0 - Initial Release</div>
             <!-- Default to the left -->
             <strong>Copyright &copy; 2017 <a href="#">AVENGERS - APLIN SIB iSTTS</a>.</strong> All rights reserved.
         </footer>

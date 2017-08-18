@@ -5,42 +5,18 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <?php mainStyle(); dataTableStyle(); mainScript(); dataTableScript(); ?>
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <script src="asset/js/oe.min.js"></script>
-        <!-- Optionally, you can add Slimscroll and FastClick plugins.
-        Both of these plugins are recommended to enhance the
-        user experience. Slimscroll is required when using the
-        fixed layout. -->
-    </head>
-    <!--
-    BODY TAG OPTIONS:
-    =================
-    Apply one or more of the following classes to get the
-    desired effect
-    |---------------------------------------------------------|
-    | SKINS         | skin-blue                               |
-    |               | skin-black                              |
-    |               | skin-purple                             |
-    |               | skin-yellow                             |
-    |               | skin-red                                |
-    |               | skin-green                              |
-    |---------------------------------------------------------|
-    |LAYOUT OPTIONS | fixed                                   |
-    |               | layout-boxed                            |
-    |               | layout-top-nav                          |
-    |               | sidebar-collapse                        |
-    |               | sidebar-mini                            |
-    |---------------------------------------------------------|
-    -->
-    <body class="hold-transition skin-blue sidebar-mini">
-        <div class="wrapper">
+<head>
+    <?php mainStyle(); dataTableStyle(); mainScript(); dataTableScript(); ?>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="asset/js/oe.min.js"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
             <!-- Logo -->
@@ -73,13 +49,10 @@
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
                                     <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
-                                    <p>
-                                        Administrator - Avengers
-                                    </p>
+                                    <p>Administrator - Avengers</p>
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-
                                     <div class="pull-right">
                                         <?php logout(); ?>
                                     </div>
@@ -104,13 +77,12 @@
                     <p>Avengers - Admin</p>
                 </div>
             </div>
-
-        <!-- Sidebar Menu -->
+            <!-- Sidebar Menu -->
             <ul class="sidebar-menu">
                 <li class="header">MENU</li>
                 <?php menuAdmin(array("Master Mahasiswa","Lihat Mahasiswa")); ?>
             </ul>
-        <!-- /.sidebar-menu -->
+            <!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
         </aside>
@@ -118,11 +90,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Data Mahasiswa
-                </h1>
-            </section>
+            <section class="content-header"><h1>Data Mahasiswa</h1></section>
 
             <section class="content">
                 <div class="box">
@@ -188,7 +156,5 @@
         </footer>
     </div>
     <!-- ./wrapper -->
-
-
 </body>
 </html>

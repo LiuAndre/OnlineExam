@@ -9,8 +9,7 @@
     if(isset($_POST['password'])){
         $password = password_hash($_POST['password'],PASSWORD_BCRYPT);
         $query = "UPDATE mahasiswa SET Password = '$password', Nama = '$nama', Alamat = '$alamat',Telpon =  '$telepon', Email = '$email' WHERE NRP = '$nrp'";
-    }
-    else{
+    } else{
         $query = "UPDATE mahasiswa SET Nama = '$nama', Alamat = '$alamat',Telpon =  '$telepon', Email = '$email' WHERE NRP = '$nrp'";
     }
     $hasil = $db->executeNonQuery($query);

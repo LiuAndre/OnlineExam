@@ -150,9 +150,7 @@
                             <div class="form-group">
                                 <label>Jam</label>
                                 <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-clock-o"></i>
-                                    </div>
+                                    <div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
                                     <input type="text" class="form-control timepicker" name="Jam" required>
                                 </div>
                                 <!-- /.input group -->
@@ -170,12 +168,12 @@
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Jumlah Soal</label>
-                            <input type="number" min='0' class="form-control" id="exampleInputEmail1" name="BanyakSoal" required/>
+                            <input type="number" min='0' class="form-control" id="exampleInputEmail1" name="BanyakSoal" required>
                         </div>
                     </div>
                     <!-- /.box-body -->
                 </div>
-                <input type="submit" class="btn btn-block btn-primary btn-lg" value="Next" name="next" />
+                <input type="submit" class="btn btn-block btn-primary btn-lg" value="Next" name="next">
             </form>
         </section>
     </div>
@@ -184,9 +182,7 @@
     <!-- Main Footer -->
     <footer class="main-footer">
         <!-- To the right -->
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0 - Initial Release
-        </div>
+        <div class="pull-right hidden-xs"><b>Version</b> 1.0 - Initial Release</div>
         <!-- Default to the left -->
         <strong>Copyright &copy; 2017 <a href="#">AVENGERS - APLIN SIB iSTTS</a>.</strong> All rights reserved.
     </footer>

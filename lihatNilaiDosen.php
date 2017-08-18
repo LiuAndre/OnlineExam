@@ -15,26 +15,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <!--
-    BODY TAG OPTIONS:
-    =================
-    Apply one or more of the following classes to get the
-    desired effect
-    |---------------------------------------------------------|
-    | SKINS         | skin-blue                               |
-    |               | skin-black                              |
-    |               | skin-purple                             |
-    |               | skin-yellow                             |
-    |               | skin-red                                |
-    |               | skin-green                              |
-    |---------------------------------------------------------|
-    |LAYOUT OPTIONS | fixed                                   |
-    |               | layout-boxed                            |
-    |               | layout-top-nav                          |
-    |               | sidebar-collapse                        |
-    |               | sidebar-mini                            |
-    |---------------------------------------------------------|
-    -->
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
         <!-- Main Header -->
@@ -75,7 +55,6 @@
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-
                                     <div class="pull-right">
                                         <?php logout(); ?>
                                     </div>
@@ -88,43 +67,43 @@
         </header>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p><?php namaDosen(); ?></p>
+                        <p><?php echo $_SESSION['user']; ?></p>
+                    </div>
                 </div>
-                <div class="pull-left info">
-                    <p><?php namaDosen(); ?></p>
-                    <p><?php echo $_SESSION['user']; ?></p>
-                </div>
-            </div>
 
-        <!-- Sidebar Menu -->
-            <ul class="sidebar-menu">
-                <li class="header">MENU</li>
-                <?php menuDosen("Laporan Mengajar"); ?>
-            </ul>
-        <!-- /.sidebar-menu -->
-        </section>
-        <!-- /.sidebar -->
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu">
+                    <li class="header">MENU</li>
+                    <?php menuDosen("Laporan Mengajar"); ?>
+                </ul>
+                <!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Nilai Mata Kuliah <?php echo $db->executeGetScalar("SELECT * FROM `Mata Kuliah` WHERE `Kode Matkul`"); ?>
-            </h1>
-        </section>
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Nilai Mata Kuliah <?php echo $db->executeGetScalar("SELECT * FROM `Mata Kuliah` WHERE `Kode Matkul`"); ?>
+                </h1>
+            </section>
 
-        <!-- Main content -->
-        <section class="content">
-            <?php nilaiMataKuliah($_GET['btnLihatNilai']); ?>
-        </section>
-        <!-- /.content -->
+            <!-- Main content -->
+            <section class="content">
+                <?php nilaiMataKuliah($_GET['btnLihatNilai']); ?>
+            </section>
+            <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
 

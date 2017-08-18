@@ -98,7 +98,6 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="txtNamaUpdateMatkul" class="col-sm-2 control-label">Nama Mata Kuliah</label>
-
                                 <div class="col-sm-10">
                                     <input type="hidden" name="txtIdUpdateMatkul" value="<?php echo $_GET['btnUpdateMatkul']; ?>" >
                                     <input type="text" class="form-control" id="txtNamaUpdateMatkul" name="txtNamaUpdateMatkul" placeholder="Nama Mata Kuliah baru untuk '<?php echo 
@@ -130,27 +129,25 @@
     function deleteMataKuliah(){
 ?>
             <form method="post">
-            <div class="modal modal-danger fade" id="dialogDeleteMatkul" role="dialog" aria-labelledby="modalDeleteMatkul">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="modalDeleteMatkul">Hapus mata kuliah?</h4>
+                <div class="modal modal-danger fade" id="dialogDeleteMatkul" role="dialog" aria-labelledby="modalDeleteMatkul">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="modalDeleteMatkul">Hapus mata kuliah?</h4>
+                            </div>
+                            <div class="modal-body"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                <button class="btn btn-primary">Hapus</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
                     </div>
-                    <div class="modal-body">
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary">Hapus</button>
-                    </div>
-                    </div>
-                    <!-- /.modal-content -->
+                    <!-- /.modal-dialog -->
                 </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
+                <!-- /.modal -->
             </form>
 <?php
     }
@@ -164,9 +161,8 @@
                     <div class="box box-success box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">Sukses</h3>
-
                             <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
                             <!-- /.box-tools -->
                         </div>
@@ -191,9 +187,8 @@
                     <div class="box box-danger box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">Gagal</h3>
-
                             <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
                             <!-- /.box-tools -->
                         </div>
@@ -231,15 +226,15 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <table class="table table-bordered table-striped datatable" id="mengajar">
-                            <thead>
-                                <tr>
-                                <th>Kode Dosen</th>
-                                <th>Nama Dosen</th>
-                                <th>Jumlah Mahasiswa</th>
-                                <th></th>
-                                <th></th>
-                                </tr>
-                            </thead>
+                                <thead>
+                                    <tr>
+                                    <th>Kode Dosen</th>
+                                    <th>Nama Dosen</th>
+                                    <th>Jumlah Mahasiswa</th>
+                                    <th></th>
+                                    <th></th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                             <?php 
                                 $data = $db->executeGetArray("SELECT d.NID,d.Nama, am.jumlah
@@ -273,16 +268,16 @@
                                     //https://stackoverflow.com/a/34012324 -> Ngakali
                                 }
                             ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                <th>Kode Dosen</th>
-                                <th>Nama Dosen</th>
-                                <th>Jumlah Mahasiswa</th>
-                                <th></th>
-                                <th></th>
-                                </tr>
-                            </tfoot>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                    <th>Kode Dosen</th>
+                                    <th>Nama Dosen</th>
+                                    <th>Jumlah Mahasiswa</th>
+                                    <th></th>
+                                    <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <!-- /.box-body -->
@@ -323,7 +318,6 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="txtNamaMatkul" class="col-sm-2 control-label">Mata Kuliah</label>
-
                                 <div class="col-sm-10" style="display: table;    vertical-align: middle;height: 30px;">
                                     <span style="display: table-cell;vertical-align: middle;" ><?php echo $db->executeGetScalar("SELECT `Nama Matkul` FROM `mata kuliah` WHERE `Kode Matkul` = '{$_GET['btnLihatPengajar']}'"); ?></span>
                                     <input type="hidden" name="kodeMatKul" value="<?php echo $_GET['btnLihatPengajar']; ?>">
@@ -331,7 +325,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="txtIdDosen" class="col-sm-2 control-label">Dosen</label>
-
                                 <div class="col-sm-10">
                                     <select name="txtIdDosen" id="txtIdDosen" class="form-control" required data-error="Dosen yang mengajar harus dipilih!">
                                     <?php
@@ -379,14 +372,14 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table class="table table-bordered table-striped datatable" id="mengambil">
-                        <thead>
-                            <tr>
-                            <th>NRP</th>
-                            <th>Nama Mahasiswa</th>
-                            <th>Nilai</th>
-                            <th>Aksi</th>
-                            </tr>
-                        </thead>
+                            <thead>
+                                <tr>
+                                <th>NRP</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>Nilai</th>
+                                <th>Aksi</th>
+                                </tr>
+                            </thead>
                             <tbody>
                         <?php 
                             $data = $db->executeGetArray("SELECT m.NRP, m.Nama, n.Nilai, am.`kode matkul`, am.NID
@@ -418,15 +411,15 @@
                                 //https://stackoverflow.com/a/34012324 -> Ngakali
                             }
                         ?>
-                        </tbody>
-                        <tfooter>
-                            <tr>
-                            <th>NRP</th>
-                            <th>Nama Mahasiswa</th>
-                            <th>Nilai</th>
-                            <th>Aksi</th>
-                            </tr>
-                        </tfooter>
+                            </tbody>
+                            <tfooter>
+                                <tr>
+                                <th>NRP</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>Nilai</th>
+                                <th>Aksi</th>
+                                </tr>
+                            </tfooter>
                         </table>
                     </div>
                     <!-- /.box-body -->
@@ -476,7 +469,6 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="txtNamaMatkul" class="col-sm-2 control-label">Mata Kuliah</label>
-
                                 <div class="col-sm-10" style="display: table;    vertical-align: middle;height: 30px;">
                                     <span style="display: table-cell;vertical-align: middle;" ><?php echo $db->executeGetScalar("SELECT `Nama Matkul` FROM `mata kuliah` WHERE `Kode Matkul` = '{$_GET['btnLihatPengajar']}'"); ?></span>
                                     <input type="hidden" name="kodeMatKul" value="<?php echo $_GET['btnLihatPengajar']; ?>">
@@ -485,7 +477,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="txtNrpMhs" class="col-sm-2 control-label">NRP</label>
-
                                 <div class="col-sm-10">
                                     <input type="text" name="txtNrpMhs" id="txtNrpMhs" class="form-control" required data-error="NRP Mahasiswa harus dimasukan!">
                                     <div class="help-block with-errors"></div>
@@ -515,26 +506,6 @@
     <![endif]-->
     <script src="asset/js/oe.min.js"></script>
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
     <!-- Main Header -->
@@ -585,52 +556,50 @@ desired effect
     </header>
     <!-- Left side column. contains the logo and sidebar -->
     <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>Administrator</p>
+                    <p>Avengers - Admin</p>
+                </div>
             </div>
-            <div class="pull-left info">
-                <p>Administrator</p>
-                <p>Avengers - Admin</p>
-            </div>
-        </div>
 
-        <!-- Sidebar Menu -->
-        <ul class="sidebar-menu">
-            <li class="header">MENU</li>
-            <?php menuAdmin("Master Mata Kuliah"); ?>
-        </ul>
-        <!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li class="header">MENU</li>
+                <?php menuAdmin("Master Mata Kuliah"); ?>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>Master Mata Kuliah</h1>
-    </section>
+        <!-- Content Header (Page header) -->
+        <section class="content-header"><h1>Master Mata Kuliah</h1></section>
 
-    <!-- Main content -->
-    <section class="content">
-        <?php pesan(); pesanError();?>
-        <div class="row">
-            <?php tableMataKuliah(); ?>
-        </div>
-        <div class="row" id="dialogTambahMatkul">
-            <div class="col-xs-12">
-                <div class="box box-success">
-                    <div class="box-header with-border">
-                    <h3 class="box-title">Tambah Mata Kuliah</h3>
-                    <!-- /.box-tools -->
-                    </div>
-                    <!-- /.box-header -->
-                    <form id="formTambahMatKul" class="form-horizontal" role="form" data-toggle="validator" method="post">
-                        <div class="box-body">
+        <!-- Main content -->
+        <section class="content">
+            <?php pesan(); pesanError();?>
+            <div class="row">
+                <?php tableMataKuliah(); ?>
+            </div>
+            <div class="row" id="dialogTambahMatkul">
+                <div class="col-xs-12">
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                        <h3 class="box-title">Tambah Mata Kuliah</h3>
+                        <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <form id="formTambahMatKul" class="form-horizontal" role="form" data-toggle="validator" method="post">
+                            <div class="box-body">
                                 <div class="form-group">
                                     <label for="txtNamaMatkul" class="col-sm-2 control-label">Nama Mata Kuliah</label>
                                     <div class="col-sm-10">
@@ -638,27 +607,25 @@ desired effect
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                        </div><!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" name="btnTambahMatkul" value="1" class="btn btn-success pull-right">Tambahkan</button>
-                            <button type="button" class="btn btn-default" id="btnCancelTambahMatkul">Cancel</button>
-                        </div><!-- /.box-footer -->
-                    </form>
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" name="btnTambahMatkul" value="1" class="btn btn-success pull-right">Tambahkan</button>
+                                <button type="button" class="btn btn-default" id="btnCancelTambahMatkul">Cancel</button>
+                            </div><!-- /.box-footer -->
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <?php updateMataKuliah(); lihatPengajar();?>
-    </section>
-    <!-- /.content -->
+            <?php updateMataKuliah(); lihatPengajar();?>
+        </section>
+        <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
     <footer class="main-footer">
         <!-- To the right -->
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0 - Initial Release
-        </div>
+        <div class="pull-right hidden-xs"><b>Version</b> 1.0 - Initial Release</div>
         <!-- Default to the left -->
         <strong>Copyright &copy; 2017 <a href="#">AVENGERS - APLIN SIB iSTTS</a>.</strong> All rights reserved.
     </footer>

@@ -53,7 +53,7 @@
 		echo $soalselesai;
 		if ($soalselesai){
 			header('location:Dashboard.php');
-		}else{
+		} else{
 			header('location:DetailUjian.php');
 		}
 	}

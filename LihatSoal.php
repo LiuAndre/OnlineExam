@@ -5,7 +5,7 @@ session_start();
 if($_SESSION['kode']==""){
     $kode = $_POST["kode"];
     $_SESSION['kode'] = $kode;
-}else{
+} else{
     $kode = $_SESSION["kode"];
 }
 
@@ -20,23 +20,22 @@ $test=$db->executeGetArray("select * from detail_ujian where kode='$kode'");
         <style></style>
     </head>
     <body>
-    <?php
+<?php
     $soalselesai=False;
     $no = (5 * $_SESSION['page'])+1;
     $tonext = $no+4;
-    
 
     if ($tonext >= $_SESSION["banyakSoal"]){
         $tonext = $_SESSION["banyakSoal"];
         $soalselesai=True;
     }
-echo 'Nomor awal '.$no." sampai nomor ".$tonext;
+    echo 'Nomor awal '.$no." sampai nomor ".$tonext;
     if ($soalselesai){
         echo "Status Soal = Selesai"."<br>";
-    }else{
+    } else{
        echo "Status Soal = Lom Selesai"."<br>";
     }
-        echo "Kode Soal ". $test[0]["Kode"] . "<br>";   
+    echo "Kode Soal ". $test[0]["Kode"] . "<br>";   
     for ($i = $no-1; $i < $tonext; $i++) {
         echo $test[$i]["Nomor"].". ";
         echo $test[$i]["Soal"]."<br>";
@@ -46,11 +45,11 @@ echo 'Nomor awal '.$no." sampai nomor ".$tonext;
         echo "D. ". $test[$i]["D"]."<br>";
         echo "E. ". $test[$i]["E"]."<br>";
         echo "Jawaban: ". $test[$i]["Jawaban"]."<br>";
-        ?>
+?>
         <form action="ujian2_edit.php" method="POST">
             <button value="<?php echo $test[$i]["Nomor"]?>" name="Nomor">Edit</button>
         </form>
-        <?php
+<?php
     }
 ?>
         <form action="page_change.php" method="POST">

@@ -18,7 +18,7 @@
 	if($_SESSION['kode']==""){
 		$kode = $_POST["kode"];
 		$_SESSION['kode'] = $kode;
-	}else{
+	} else{
 		$kode = $_SESSION["kode"];
 	}
 	$judul=$db->executeGetScalar("select Nama from header_ujian where kode='$kode'");
@@ -89,97 +89,96 @@
         </header>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p><?php namaDosen(); ?></p>
+                        <p><?php echo $_SESSION['user']; ?></p>
+                    </div>
                 </div>
-                <div class="pull-left info">
-                    <p><?php namaDosen(); ?></p>
-                    <p><?php echo $_SESSION['user']; ?></p>
-                </div>
-            </div>
-
-        <!-- Sidebar Menu -->
-            <ul class="sidebar-menu">
-                <li class="header">MENU</li>
-                <?php menuDosen(Array("Master Tugas","Tambah")); ?>
-            </ul>
-        <!-- /.sidebar-menu -->
-        </section>
-        <!-- /.sidebar -->
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu">
+                    <li class="header">MENU</li>
+                    <?php menuDosen(Array("Master Tugas","Tambah")); ?>
+                </ul>
+                <!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-				<?php echo $judul;?>
-				<small>
-                <?php $soalselesai=False;
-                    $no = (5 * $_SESSION['page'])+1;
-                    $tonext = $no+4;
-                    if ($tonext >= $_SESSION["banyakSoal"]){
-                        $tonext = $_SESSION["banyakSoal"];
-                        $soalselesai=True;
-                    }
-                    echo "Halaman ". ($_SESSION['page']+1). " dari ".(ceil($_SESSION["banyakSoal"]/5));
-                ?>
-                </small>
-			</h1>
-        </section>
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    <?php echo $judul;?>
+                    <small>
+                    <?php $soalselesai=False;
+                        $no = (5 * $_SESSION['page'])+1;
+                        $tonext = $no+4;
+                        if ($tonext >= $_SESSION["banyakSoal"]){
+                            $tonext = $_SESSION["banyakSoal"];
+                            $soalselesai=True;
+                        }
+                        echo "Halaman ". ($_SESSION['page']+1). " dari ".(ceil($_SESSION["banyakSoal"]/5));
+                    ?>
+                    </small>
+                </h1>
+            </section>
 
-        <!-- Main content -->
-        <section class="content">
-    <?php
-        for ($i = $no-1; $i < $tonext; $i++) {
-    ?>
-            <!-- YOUR CONTENT -->
-            <form role="form" action="EditSoal.php" method="post">
-                <div class="box box-info">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"><?php echo $test[$i]["Nomor"];?> <button type="submit" class="btn btn-primary btn-lg" value="<?php echo $test[$i]["Nomor"]?>" name='Nomor'>Edit</button></h3>
+            <!-- Main content -->
+            <section class="content">
+        <?php
+            for ($i = $no-1; $i < $tonext; $i++) {
+        ?>
+                <!-- YOUR CONTENT -->
+                <form role="form" action="EditSoal.php" method="post">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><?php echo $test[$i]["Nomor"];?> <button type="submit" class="btn btn-primary btn-lg" value="<?php echo $test[$i]["Nomor"]?>" name='Nomor'>Edit</button></h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label><?php echo $test[$i]["Soal"];?></label>
+                            </div>
+                            <div class="input-group">
+                                <label>A.</label> <?php  echo $test[$i]["A"];?>
+                            </div>
+                            <div class="input-group">
+                                <label>B.</label> <?php echo $test[$i]["B"]?>
+                            </div>
+                            <div class="input-group">
+                                <label>C.</label> <?php echo $test[$i]["C"]?>
+                            </div>
+                            <div class="input-group">
+                                <label>D.</label> <?php echo $test[$i]["D"]?>
+                            </div>
+                            <div class="input-group">
+                                <label>E.</label> <?php echo $test[$i]["E"]?>
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <label>Jawaban: <?php echo $test[$i]["Jawaban"]?></label>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <!-- textarea -->
-                        <div class="form-group">
-                            <label><?php echo $test[$i]["Soal"];?></label>
-                        </div>
-                        <div class="input-group">
-                            <label>A.</label> <?php  echo $test[$i]["A"];?>
-                        </div>
-                        <div class="input-group">
-                            <label>B.</label> <?php echo $test[$i]["B"]?>
-                        </div>
-                        <div class="input-group">
-                            <label>C.</label> <?php echo $test[$i]["C"]?>
-                        </div>
-                        <div class="input-group">
-                            <label>D.</label> <?php echo $test[$i]["D"]?>
-                        </div>
-                        <div class="input-group">
-                            <label>E.</label> <?php echo $test[$i]["E"]?>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <label>Jawaban: <?php echo $test[$i]["Jawaban"]?></label>
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
                 </form>
-    <?php
-        }
-    ?>
+        <?php
+            }
+        ?>
                 <form method="POST">
                     <div class="btn-group">
                         <button class="btn btn-primary btn-lg" value="-1" name="whattodo"<?php if ($_SESSION['page']==0){echo "disabled";}else{echo "";}?> >BACK</button>
-                        <?php for($i = 0;$i<(ceil($_SESSION["banyakSoal"]/5));$i++) {?>
-                        <button class="btn btn-primary btn-lg" value="<?php echo $i;?>" name ="page"><?php echo $i+1;?></button>
+                        <?php for($i = 0;$i<(ceil($_SESSION["banyakSoal"]/5));$i++){?>
+                            <button class="btn btn-primary btn-lg" value="<?php echo $i;?>" name ="page"><?php echo $i+1;?></button>
                         <?php }?>
                         <button class="btn btn-primary btn-lg" value="1" name="whattodo"<?php if ($soalselesai){echo "disabled";}else{echo "";}?> >NEXT</button>
                     </div>

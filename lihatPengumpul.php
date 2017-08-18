@@ -11,9 +11,8 @@
                     <div class="box box-success box-solid">
                         <div class="box-header with-border">
                             <h3 class="box-title">Sukses</h3>
-
                             <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
                             <!-- /.box-tools -->
                         </div>
@@ -39,7 +38,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Gagal</h3>
                             <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                             </div>
                             <!-- /.box-tools -->
                         </div>
@@ -119,27 +118,27 @@
 </header>
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
-<!-- sidebar: style can be found in sidebar.less -->
-<section class="sidebar">
-    <!-- Sidebar user panel (optional) -->
-    <div class="user-panel">
-        <div class="pull-left image">
-            <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="asset/img/user.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+            <p><?php namaDosen(); ?></p>
+                <p><?php echo $_SESSION['user']; ?></p>
+            </div>
         </div>
-        <div class="pull-left info">
-           <p><?php namaDosen(); ?></p>
-            <p><?php echo $_SESSION['user']; ?></p>
-        </div>
-    </div>
 
-    <!-- Sidebar Menu -->
-    <ul class="sidebar-menu">
-        <li class="header">MENU</li>
-        <?php menuDosen(Array("Master Tugas","Lihat")); ?>
-    </ul>
-    <!-- /.sidebar-menu -->
-</section>
-<!-- /.sidebar -->
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu">
+            <li class="header">MENU</li>
+            <?php menuDosen(Array("Master Tugas","Lihat")); ?>
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
 </aside>
 
 <!-- Content Wrapper. Contains page content -->
@@ -153,57 +152,57 @@
 
 <!-- Main content -->
 <section class="content">
-<div class="col-xs-12">
-    <div class="box box-info">
-        <div class="box-header">
-            <h3 class="box-title">Daftar Pengumpul</h3>
-            <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 200px;">
-                    <a href="downloadTugas.php?kodeTugas=<?php echo $_GET['kodeTugas'] ?>"><button class="btn btn-success" style="display:inline-block;height: 30px;padding: 5px 10px; margin-right:10px;"><span class="glyphicon glyphicon-download-alt"></span> Download Semua</button></a>
+    <div class="col-xs-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Daftar Pengumpul</h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 200px;">
+                        <a href="downloadTugas.php?kodeTugas=<?php echo $_GET['kodeTugas'] ?>"><button class="btn btn-success" style="display:inline-block;height: 30px;padding: 5px 10px; margin-right:10px;"><span class="glyphicon glyphicon-download-alt"></span> Download Semua</button></a>
+                    </div>
                 </div>
+                <!-- /.box-tools -->
             </div>
-            <!-- /.box-tools -->
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-        <?php pesan(); pesanError(); ?>
-            <table id="tabelMataKuliah" class="table table-bordered table-striped datatable">
-                <thead>
-                    <tr>
-                    <th>NRP</th>
-                    <th>Nama</th>
-                    <th>Kumpul</th>
-                    </tr>
-                </thead>
-                <tbody>
-            <?php
-                $kode = $_GET['kodeTugas'];
-                $kodeMatkul = $db->executeGetScalar("SELECT `kode matkul` FROM TUGAS WHERE `kode tugas` = '$kode'");
-                $kodeDosen = $db->executeGetScalar("SELECT `kode dosen` FROM TUGAS WHERE `kode tugas` = '$kode'");
-                $data = $db->executeGetArray("SELECT * FROM mengambil m, mahasiswa mhs WHERE m.`Kode Matkul` = '$kodeMatkul' and m.`NID` = '$kodeDosen' and mhs.`NRP` = m.NRP");
-                foreach($data as $val){
-                    echo "<tr><td>{$val['NRP']}</td><td>{$val['Nama']}</td><td>";
-                    $coba = realpath(GLOBALDIR."/tugas/t".$kode.$kodeMatkul.$kodeDosen."_".$val['NRP'].".zip");
-                    if(file_exists(realpath(GLOBALDIR."/tugas/t".$kode.$kodeMatkul.$kodeDosen."_".$val['NRP'].".zip"))){
-                        echo "Sudah <a style='height:30px;padding: 5px 10px;margin-left: 20px;' class='btn btn-success' href='tugas/t".$kode.$kodeMatkul.$kodeDosen."_".$val['NRP'].".zip'>Download</a>";
-                    } else{
-                        echo "Belum";
+            <!-- /.box-header -->
+            <div class="box-body">
+            <?php pesan(); pesanError(); ?>
+                <table id="tabelMataKuliah" class="table table-bordered table-striped datatable">
+                    <thead>
+                        <tr>
+                        <th>NRP</th>
+                        <th>Nama</th>
+                        <th>Kumpul</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <?php
+                    $kode = $_GET['kodeTugas'];
+                    $kodeMatkul = $db->executeGetScalar("SELECT `kode matkul` FROM TUGAS WHERE `kode tugas` = '$kode'");
+                    $kodeDosen = $db->executeGetScalar("SELECT `kode dosen` FROM TUGAS WHERE `kode tugas` = '$kode'");
+                    $data = $db->executeGetArray("SELECT * FROM mengambil m, mahasiswa mhs WHERE m.`Kode Matkul` = '$kodeMatkul' and m.`NID` = '$kodeDosen' and mhs.`NRP` = m.NRP");
+                    foreach($data as $val){
+                        echo "<tr><td>{$val['NRP']}</td><td>{$val['Nama']}</td><td>";
+                        $coba = realpath(GLOBALDIR."/tugas/t".$kode.$kodeMatkul.$kodeDosen."_".$val['NRP'].".zip");
+                        if(file_exists(realpath(GLOBALDIR."/tugas/t".$kode.$kodeMatkul.$kodeDosen."_".$val['NRP'].".zip"))){
+                            echo "Sudah <a style='height:30px;padding: 5px 10px;margin-left: 20px;' class='btn btn-success' href='tugas/t".$kode.$kodeMatkul.$kodeDosen."_".$val['NRP'].".zip'>Download</a>";
+                        } else{
+                            echo "Belum";
+                        }
+                        echo"</td></tr>";
                     }
-                    echo"</td></tr>";
-                }
-            ?>
-                <tbody>
-                <tfooter>
-                    <tr>
-                    <th>NRP</th>
-                    <th>Nama</th>
-                    <th>Kumpul</th>
-                    </tr>
-                </tfooter>
-            </table>
+                ?>
+                    <tbody>
+                    <tfooter>
+                        <tr>
+                        <th>NRP</th>
+                        <th>Nama</th>
+                        <th>Kumpul</th>
+                        </tr>
+                    </tfooter>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </section>
 <!-- /.content -->
 </div>

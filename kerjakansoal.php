@@ -5,20 +5,19 @@
 	if($_SESSION['kode']==""){
 		$kode = $_POST["kode"];
 		$_SESSION['kode'] = $kode;
-	}else{
+	} else{
 		$kode = $_SESSION["kode"];
 	}
 
 	//untuk cek supaya tidak bisa kerja jika sudah ada nilainya
 	if($kode != ""){
-			$checkingkode = $db->executeGetScalar("SELECT count(*) from nilai where `Kode Ujian` = $kode AND NRP = {$_SESSION['user']}");
+        $checkingkode = $db->executeGetScalar("SELECT count(*) from nilai where `Kode Ujian` = $kode AND NRP = {$_SESSION['user']}");
 		if($checkingkode > 0){
 			header("Location:dashboard.php");
 		}
-	}
-		else{
-			header("Location:dashboard.php");
-		}
+	} else{
+        header("Location:dashboard.php");
+    }
 
 	$judul=$db->executeGetScalar("select Nama from header_ujian where Kode='$kode'");
 	$_SESSION['banyakSoal']=$db->executeGetScalar("select banyak from header_ujian where Kode='$kode'");
@@ -127,7 +126,7 @@ $(function(){
 </script>
 </head>
 <body class="skin-blue sidebar-mini sidebar-collapse">
-    <div class="wrapper">
+<div class="wrapper">
     <!-- Main Header -->
     <header class="main-header">
         <!-- Logo -->

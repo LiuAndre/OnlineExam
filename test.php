@@ -9,8 +9,7 @@
 			// Masukin data ke DB
 			if(!$db->executeNonQuery("INSERT INTO $jenis VALUES('{$_POST['user']}','$pass','','','','')"))
 				echo "Data Ditambahkan";
-		}
-		else 
+		} else 
 			echo "WOI DATA LU KOSONG!";
 	}
 	session_start();
